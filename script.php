@@ -1,7 +1,7 @@
 <?php
 /**
 * CG Hide Meta Plugin 
-* Version			: 1.1.0
+* Version			: 1.1.2
 * copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
 * license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 */
@@ -12,6 +12,7 @@ use Joomla\CMS\Language\Text;
 use Joomla\Filesystem\Folder;
 use Joomla\CMS\Version;
 use Joomla\Filesystem\File;
+use Joomla\CMS\Log\Log;
 
 class plgsystemcghidemetaInstallerScript
 {
@@ -69,8 +70,22 @@ class plgsystemcghidemetaInstallerScript
 	        $db->execute();
         }
         catch (RuntimeException $e) {
-            JLog::add('unable to enable plugin cg hide meta', JLog::ERROR, 'jerror');
+            Log::add('unable to enable plugin cg hide meta', Log::ERROR, 'jerror');
         }
+		// remove obsolete update sites
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true)
+			->delete('#__update_sites')
+			->where($db->quoteName('location') . ' like "%432473037d.url-de-test.ws/%"');
+		$db->setQuery($query);
+		$db->execute();
+		// BDay plugin is now on Github
+		$query = $db->getQuery(true)
+			->delete('#__update_sites')
+			->where($db->quoteName('location') . ' like "%conseilgouz.com/updates/%_system_cghidemeta%"');
+		$db->setQuery($query);
+		$db->execute();
+		
 	}
 
 	// Check if Joomla version passes minimum requirement
