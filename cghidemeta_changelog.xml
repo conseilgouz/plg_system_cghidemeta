@@ -1,0 +1,26 @@
+<changelogs>
+	<changelog>
+		<element>cghidemeta</element>
+		<type>plugin</type>
+		<group>system</group>
+		<version>1.0.1</version>
+        <note>
+            <item>Update : 09/12/2021</item>
+        </note>
+         <fix>
+            <item>empty parameters</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>cghidemeta</element>
+		<type>plugin</type>
+		<group>system</group>
+		<version>1.0.0</version>
+        <note>
+            <item>Update : 09/12/2021</item>
+        </note>
+         <addition>
+            <item>New plugin : first version</item>
+        </addition>
+	</changelog>
+</changelogs>
