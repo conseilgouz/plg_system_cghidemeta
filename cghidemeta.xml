@@ -10,7 +10,7 @@
 	<version>1.1.0</version>
 	<description>CG_HIDEMETA_DESC</description>
 	<scriptfile>script.php</scriptfile>
-	<changelogurl>https://raw.githubusercontent.com/conseilgouz/plg_system_cghidemeta_j4/master/cghidemeta_changelog.xml</changelogurl>
+	<changelogurl>https://raw.githubusercontent.com/conseilgouz/plg_system_cghidemeta/master/cghidemeta_changelog.xml</changelogurl>
 	<files>
 		<filename plugin="cghidemeta">cghidemeta.php</filename>
 		<filename>index.html</filename>
