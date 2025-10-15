@@ -1,18 +1,18 @@
 <?php
 /**
 * CG Hide Meta Plugin 
-* Version			: 1.1.2
-* copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
+* copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
 * license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 */
 // No direct access to this file
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\Filesystem\Folder;
-use Joomla\CMS\Version;
-use Joomla\Filesystem\File;
 use Joomla\CMS\Log\Log;
+use Joomla\CMS\Version;
+use Joomla\Database\DatabaseInterface;
+use Joomla\Filesystem\File;
+use Joomla\Filesystem\Folder;
 
 class plgsystemcghidemetaInstallerScript
 {
@@ -56,7 +56,7 @@ class plgsystemcghidemetaInstallerScript
 		return true;
     }
 	private function postinstall_cleanup() {
-		$db = Factory::getDbo();
+		$db = Factory::getContainer()->get(DatabaseInterface::class);
         $conditions = array(
             $db->qn('type') . ' = ' . $db->q('plugin'),
             $db->qn('element') . ' = ' . $db->quote('cghidemeta')
@@ -130,7 +130,7 @@ class plgsystemcghidemetaInstallerScript
 			JPATH_PLUGINS . '/system/' . $this->installerName . '/language',
 			JPATH_PLUGINS . '/system/' . $this->installerName,
 		]);
-		$db = Factory::getDbo();
+		$db = Factory::getContainer()->get(DatabaseInterface::class);
 		$query = $db->getQuery(true)
 			->delete('#__extensions')
 			->where($db->quoteName('element') . ' = ' . $db->quote($this->installerName))
@@ -138,7 +138,21 @@ class plgsystemcghidemetaInstallerScript
 			->where($db->quoteName('type') . ' = ' . $db->quote('plugin'));
 		$db->setQuery($query);
 		$db->execute();
-		Factory::getCache()->clean('_system');
+        $cache = Factory::getContainer()->get(Joomla\CMS\Cache\CacheControllerFactoryInterface::class)->createCacheController();
+        $cache->clean('_system');
+
 	}
-	
+    public function delete($files = [])
+    {
+        foreach ($files as $file) {
+            if (is_dir($file)) {
+                Folder::delete($file);
+            }
+
+            if (is_file($file)) {
+                File::delete($file);
+            }
+        }
+    }
+
 }

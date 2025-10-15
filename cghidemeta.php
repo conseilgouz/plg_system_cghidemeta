@@ -1,9 +1,8 @@
 <?php
 /**
- * @version 	1.0.1
  * @package 	CG Hide Meta
- * @copyright 	(c) 2021 www.conseilgouz.com
- * @license		GNU/GPL, http://www.gnu.org/licenses/gpl-3.0.html
+ * @copyright 	(c) 2025 www.conseilgouz.com
+ * @license		GNU/GPL, https://www.gnu.org/licenses/gpl-3.0.html
  *
  */
 defined('_JEXEC') or die('Restricted access');

@@ -3,6 +3,18 @@
 		<element>cghidemeta</element>
 		<type>plugin</type>
 		<group>system</group>
+		<version>1.2.0</version>
+        <note>
+            <item>Update : 15/10/2025</item>
+        </note>
+        <fix>
+            <item>Joomla 6.x compatibility</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>cghidemeta</element>
+		<type>plugin</type>
+		<group>system</group>
 		<version>1.1.2</version>
         <note>
             <item>Update : 18/10/2023</item>
